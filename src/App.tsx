@@ -1,5 +1,9 @@
 import { useState, useEffect } from 'react'
 import { useQuery, gql } from '@apollo/client'
+import { FormItem } from 'components/FormItem'
+import { FormItemTypeEnum } from 'common/enum'
+import { Form } from 'antd'
+
 const GET_LOCATIONS = gql`
   query GetLocations {
     locations {
@@ -38,6 +42,17 @@ function App() {
       <div>
         <button onClick={() => setCount((count) => count + 1)}>count is {count}</button>
       </div>
+      <br />
+      <Form
+        name="basic"
+        labelCol={{ span: 8 }}
+        wrapperCol={{ span: 16 }}
+        style={{ maxWidth: 600 }}
+        initialValues={{ remember: true }}
+        autoComplete="off"
+      >
+        <FormItem itemType={FormItemTypeEnum.INPUT} name='' label='' />
+      </Form>
     </>
   )
 }
