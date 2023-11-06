@@ -1,5 +1,5 @@
-import { useMemo, ReactNode } from 'react'
-import { FormItemTypeEnum } from 'common/enum'
+import { useMemo, ReactNode } from 'react';
+import { FormItemTypeEnum } from 'common/enum';
 import {
   Form,
   Input,
@@ -16,19 +16,20 @@ import {
   TimePicker,
   TimePickerProps,
   DatePicker,
-  DatePickerProps
-} from 'antd'
-import { TextAreaProps, PasswordProps } from 'antd/lib/input'
-import { CheckboxGroupProps } from 'antd/lib/checkbox'
-import { Rule } from 'antd/lib/form'
+  DatePickerProps,
+} from 'antd';
+import { TextAreaProps, PasswordProps } from 'antd/lib/input';
+import { CheckboxGroupProps } from 'antd/lib/checkbox';
+import { Rule } from 'antd/lib/form';
+import './styles.sass';
 
-const { TextArea, Password } = Input
+const { TextArea, Password } = Input;
 
 interface IBaseProps<T> {
-  itemType: T
-  name: string
-  label: ReactNode
-  rules?: Rule[]
+  itemType: T;
+  name: string;
+  label: ReactNode;
+  rules?: Rule[];
 }
 
 type ConditionalProps<T extends FormItemTypeEnum> = T extends FormItemTypeEnum.INPUT
@@ -53,53 +54,57 @@ type ConditionalProps<T extends FormItemTypeEnum> = T extends FormItemTypeEnum.I
   ? IBaseProps<T> & TimePickerProps
   : T extends FormItemTypeEnum.DATE_PICKER
   ? IBaseProps<T> & DatePickerProps
-  : IBaseProps<T>
+  : IBaseProps<T>;
 
 export const FormItem = <T extends FormItemTypeEnum>(props: ConditionalProps<T>) => {
-  const { name, label, rules } = props
+  const { itemType, name, label, rules, ...restProps } = props;
 
-  const renderItem = useMemo(() => {
-    const { itemType, ...restProps } = props
-    switch (itemType) {
-      case FormItemTypeEnum.INPUT: {
-        return <Input {...restProps} />
+  const renderItem = useMemo(
+    () => {
+      switch (itemType) {
+        case FormItemTypeEnum.INPUT: {
+          return <Input {...restProps} />;
+        }
+        case FormItemTypeEnum.INPUT_NUMBER: {
+          return <InputNumber {...restProps} />;
+        }
+        case FormItemTypeEnum.TEXTAREA: {
+          return <TextArea {...restProps} />;
+        }
+        case FormItemTypeEnum.PASSWORD: {
+          return <Password {...restProps} />;
+        }
+        case FormItemTypeEnum.SELECT: {
+          return <Select {...restProps} />;
+        }
+        case FormItemTypeEnum.RADIO: {
+          return <Radio {...restProps} />;
+        }
+        case FormItemTypeEnum.RADIO_GROUP: {
+          return <Radio.Group {...restProps} />;
+        }
+        case FormItemTypeEnum.CHECKBOX: {
+          return <Checkbox {...restProps} />;
+        }
+        case FormItemTypeEnum.CHECKBOX_GROUP: {
+          return <Checkbox.Group {...restProps} />;
+        }
+        case FormItemTypeEnum.TIME_PICKER: {
+          return <TimePicker {...restProps} />;
+        }
+        case FormItemTypeEnum.DATE_PICKER: {
+          return <DatePicker {...restProps} />;
+        }
       }
-      case FormItemTypeEnum.INPUT_NUMBER: {
-        return <InputNumber {...restProps} />
-      }
-      case FormItemTypeEnum.TEXTAREA: {
-        return <TextArea {...restProps} />
-      }
-      case FormItemTypeEnum.PASSWORD: {
-        return <Password {...restProps} />
-      }
-      case FormItemTypeEnum.SELECT: {
-        return <Select {...restProps} />
-      }
-      case FormItemTypeEnum.RADIO: {
-        return <Radio {...restProps} />
-      }
-      case FormItemTypeEnum.RADIO_GROUP: {
-        return <Radio.Group {...restProps} />
-      }
-      case FormItemTypeEnum.CHECKBOX: {
-        return <Checkbox {...restProps} />
-      }
-      case FormItemTypeEnum.CHECKBOX_GROUP: {
-        return <Checkbox.Group {...restProps} />
-      }
-      case FormItemTypeEnum.TIME_PICKER: {
-        return <TimePicker {...restProps} />
-      }
-      case FormItemTypeEnum.DATE_PICKER: {
-        return <DatePicker {...restProps} />
-      }
-    }
-  }, [props])
+    },
+    // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+    // @ts-ignore
+    [itemType, restProps],
+  );
 
   return (
     <Form.Item label={label} name={name} rules={rules}>
       {renderItem}
     </Form.Item>
-  )
-}
+  );
+};

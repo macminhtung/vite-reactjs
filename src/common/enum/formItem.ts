@@ -9,5 +9,5 @@ export enum FormItemTypeEnum {
   RADIO = 'RADIO',
   RADIO_GROUP = 'RADIO_GROUP',
   TIME_PICKER = 'TIME_PICKER',
-  DATE_PICKER = 'DATE_PICKER'
+  DATE_PICKER = 'DATE_PICKER',
 }

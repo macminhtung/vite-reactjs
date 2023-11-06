@@ -19,7 +19,6 @@ export default defineConfig({
   css: {
     devSourcemap: true
   },
-  // root: './src',
   resolve: {
     alias: { ...absolutePathAliases }
   },

@@ -22,3 +22,8 @@ dist-ssr
 *.njsproj
 *.sln
 *.sw?
+
+# ENVs
+.env.dev
+.env.stg
+.env.prod
