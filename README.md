@@ -1,1 +1,1 @@
-# React + TypeScript + Vite + Web Worker
+# React + TypeScript + Vite + Web Worker + Apollo/CLient + ReactQuery + TailWind
