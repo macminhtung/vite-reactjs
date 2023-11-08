@@ -1,10 +1,12 @@
-import { FormItem } from 'components/FormItem';
-import { FormItemTypeEnum } from 'common/enum';
-import { CustomForm } from 'components/CustomForm';
-import { ISignInPayload } from 'api/auth';
 import { Rule } from 'antd/lib/form';
+import { ISignInPayload } from 'api/auth';
+import { ROUTER_PATHS } from 'common/constant';
+import { FormItemTypeEnum, LanguageKeyEnum, MutationKeyEnum } from 'common/enum';
+import { CustomForm } from 'components/CustomForm';
+import { CustomFormItem } from 'components/CustomFormItem';
 import { useCustomMutation } from 'hooks/useCustomMutation';
-import { MutationKeyEnum } from 'common/enum';
+import { useTranslation } from 'react-i18next';
+import { Link } from 'react-router-dom';
 
 // INIT_VALUES
 const INIT_VALUES: ISignInPayload = { email: '', password: '' };
@@ -20,20 +22,41 @@ const PASSWORD_RULES: Rule[] = [
 ];
 
 export const SignIn = () => {
-  const sigInMutation = useCustomMutation({ mutationKey: MutationKeyEnum.SIGNIN });
+  const { t } = useTranslation();
+  const signInMutation = useCustomMutation({ mutationKey: MutationKeyEnum.SIGNIN });
 
   const onFinish = (payload: ISignInPayload) => {
     console.log('payload =', payload);
-    sigInMutation.mutateAsync(payload);
+    signInMutation.mutateAsync(payload);
   };
 
   return (
-    <div className='main-container center-center'>
-      <h2 className='text-orange'>SIGNIN</h2>
+    <div className='center-center'>
+      <h2 className='text-orange'>{t(LanguageKeyEnum.SIGNIN)}</h2>
       <CustomForm initialValues={INIT_VALUES} onFinish={onFinish}>
-        <FormItem itemType={FormItemTypeEnum.INPUT} name='email' label='Email' rules={EMAIL_RULES} />
-        <FormItem itemType={FormItemTypeEnum.PASSWORD} name='password' label='Password' rules={PASSWORD_RULES} />
+        <CustomFormItem
+          itemType={FormItemTypeEnum.INPUT}
+          name='email'
+          label={t(LanguageKeyEnum.Email)}
+          rules={EMAIL_RULES}
+        />
+        <CustomFormItem
+          itemType={FormItemTypeEnum.PASSWORD}
+          name='password'
+          label={t(LanguageKeyEnum.Password)}
+          rules={PASSWORD_RULES}
+        />
       </CustomForm>
+      <div className='mt-5'>
+        <Link className='text-orange' to={ROUTER_PATHS.SIGNUP}>
+          {t(LanguageKeyEnum.SIGNUP)}
+        </Link>
+      </div>
+      <div className='mt-5'>
+        <Link className='text-orange' to={ROUTER_PATHS.DASHBOARD.MAIN}>
+          {t(LanguageKeyEnum.DASHBOARD).toUpperCase()}
+        </Link>
+      </div>
     </div>
   );
 };

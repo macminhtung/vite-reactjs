@@ -3,10 +3,15 @@
 @tailwind utilities
 
 *
-  @apply text-black font-sans
+  @apply font-sans
 
 body
   margin: 0
+  display: flex
+  flex-flow: column
+  div.ant-notification
+    div.ant-notification-notice-message
+      @apply mb-0 #{!important}
 
 @font-face
   font-family: 'DMSans'

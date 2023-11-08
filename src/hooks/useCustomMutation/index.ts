@@ -24,7 +24,7 @@ export const useCustomMutation = <T extends MutationKeyEnum>(payload: IUseCustom
   const mutationFn = MUTATION_API[mutationKey];
   return useMutation(mutationKey, (payload: ConditionalApiPayload<T>) => mutationFn(payload), {
     onSuccess: () => {
-      notification.info({ message: `[${mutationKey}] successfully` });
+      notification.success({ message: `[${mutationKey}] successfully` });
     },
     onError: (error: any) => {
       notification.error({ message: error?.message });

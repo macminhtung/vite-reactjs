@@ -31,7 +31,7 @@ module.exports = {
     plugin(function ({ addComponents, theme }) {
       addComponents({
         '.main-container': {
-          width: '100%',
+          width: 'calc(100vw - 4rem)',
           padding: '2rem',
         },
         '.center-center': {

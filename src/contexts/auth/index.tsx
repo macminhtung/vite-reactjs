@@ -1,4 +1,4 @@
-import { createContext, useContext, useState, PropsWithChildren, useEffect, useMemo, useCallback } from 'react';
+import { createContext, useContext, useState, PropsWithChildren, useEffect, useCallback } from 'react';
 import { APIService } from 'api';
 
 interface IAuthContext {
@@ -50,40 +50,48 @@ export const AuthProvider = (props: PropsWithChildren) => {
     setAuthInfo(initAuthInfo);
   }, []);
 
+  // Update accessToken for default Authorization
   useEffect(() => {
-    if (accessToken) {
-      APIService.defaults.headers.common.Authorization = `Bearer ${accessToken}`;
-      localStorage.setItem(ACCESS_TOKEN_KEY, accessToken || '');
-    }
+    if (accessToken) APIService.defaults.headers.common.Authorization = `Bearer ${accessToken}`;
   }, [accessToken]);
 
-  useMemo(() => {
+  // Configuration interceptors for APIService
+  useEffect(() => {
     APIService.interceptors.response.use(
       (response) => response,
       async (error: any) => {
-        const originalRequest = error?.config;
-        const { message, statusCode } = error?.response?.data || {};
-        error.message = message;
+        const { config, response, code } = error;
+        const { message, statusCode } = response?.data || {};
 
+        // Update message for error
+        error.message = message || code;
+
+        // CASE: JWT Expired
         if (statusCode === 401 && message === 'jwt expired') {
           try {
-            const refreshToken = localStorage.getItem(REFRESH_TOKEN_KEY) || '';
+            // Get newAccessToken
+            // const refreshToken = localStorage.getItem(REFRESH_TOKEN_KEY) || '';
             const newAccessToken = 'await getNewAccessToken(refreshToken)';
+
+            // Update newAccessToken
             setAccessToken(newAccessToken);
-            originalRequest.headers.Authorization = `Bearer ${newAccessToken}`;
-            return await APIService(originalRequest);
+            config.headers.Authorization = `Bearer ${newAccessToken}`;
+            localStorage.setItem(ACCESS_TOKEN_KEY, newAccessToken);
+
+            // Re-Call API with newAccessToken
+            return await APIService(config);
           } catch (error) {
             logout();
             return Promise.reject(error);
           }
-        } else {
-          return Promise.reject(error);
         }
+        // CASE: API response error
+        else return Promise.reject(error);
       },
     );
   }, [logout]);
 
-  const store = {
+  const store: IAuthContext = {
     accessToken,
     setAccessToken,
     authInfo,

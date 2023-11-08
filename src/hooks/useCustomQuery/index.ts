@@ -9,17 +9,18 @@ const QUERY_API: { [key in QueryKeyEnum]: (x: any) => Promise<any> } = {
   [QueryKeyEnum.GET_USER_BY_ID]: getUserById,
 };
 
-type ConditionalApiPayload<T extends QueryKeyEnum> = T extends QueryKeyEnum.GET_USER_BY_ID ? IGetUserById : undefined;
+type ConditionalUseCustomQuery<T extends QueryKeyEnum> = T extends QueryKeyEnum.GET_USER_BY_ID
+  ? IBaseUseCustomQuery<T> & { apiPayload: IGetUserById }
+  : IBaseUseCustomQuery<T> & { apiPayload?: undefined };
 
-interface IUseCustomQuery<T extends QueryKeyEnum> {
+interface IBaseUseCustomQuery<T extends QueryKeyEnum> {
   queryKey: T;
   dependentQueries?: any[];
-  apiPayload: ConditionalApiPayload<T>;
   options?: Omit<UseQueryOptions<unknown, unknown, unknown, any[]>, 'queryKey' | 'queryFn'> | undefined;
 }
 
-export const useCustomQuery = <T extends QueryKeyEnum>(payload: IUseCustomQuery<T>) => {
-  const { queryKey, dependentQueries = [], apiPayload, options = {} } = payload;
+export const useCustomQuery = <T extends QueryKeyEnum>(payload: ConditionalUseCustomQuery<T>) => {
+  const { queryKey, dependentQueries = [], apiPayload = {}, options = {} } = payload;
   const queryFn = QUERY_API[queryKey];
   return useQuery([queryKey, ...dependentQueries], () => queryFn(apiPayload), {
     onSuccess() {
