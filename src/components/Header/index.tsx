@@ -1,11 +1,11 @@
 import { Select } from 'antd';
 import { LanguageEnum } from 'common/enum';
-import { useTranslation } from 'react-i18next';
+import { useTrans } from 'i18n';
 import { LANGUAGE_KEY, DEFAULT_LANGUAGE, LANGUAGE_VALUES } from 'i18n';
 import './styles.sass';
 
 export const Header = () => {
-  const { i18n } = useTranslation();
+  const { i18n } = useTrans();
 
   const onChangeLanguage = (value: LanguageEnum) => {
     i18n.changeLanguage(value);

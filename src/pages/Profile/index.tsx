@@ -1,12 +1,12 @@
 import { QueryKeyEnum } from 'common/enum';
-import { useCustomQuery } from 'hooks/useCustomQuery';
+import { useCustomQuery } from 'hooks/react-query/useCustomQuery';
 import { Link } from 'react-router-dom';
 import { ROUTER_PATHS } from 'common/constant';
 import { LanguageKeyEnum } from 'common/enum';
-import { useTranslation } from 'react-i18next';
+import { useTrans } from 'i18n';
 
 export const Profile = () => {
-  const { t } = useTranslation();
+  const { t } = useTrans();
   const { isLoading, data } = useCustomQuery({ queryKey: QueryKeyEnum.GET_AUTH_PROFILE });
 
   return (

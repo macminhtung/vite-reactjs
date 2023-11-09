@@ -1,7 +1,8 @@
 import i18n from 'i18next';
-import { initReactI18next } from 'react-i18next';
-import { LanguageEnum } from 'common/enum';
+import { initReactI18next, useTranslation } from 'react-i18next';
+import { LanguageEnum, LanguageKeyEnum } from 'common/enum';
 import { EN, VI } from 'languages';
+import type { i18n as i18nType } from 'i18next';
 
 export const LANGUAGE_KEY = 'LANGUAGE_KEY';
 export const LANGUAGE_VALUES = Object.values(LanguageEnum);
@@ -24,5 +25,10 @@ i18n.use(initReactI18next).init({
     },
   },
 });
+
+export const useTrans = (): {
+  t: (key: LanguageKeyEnum) => string;
+  i18n: i18nType;
+} => useTranslation();
 
 export default i18n;

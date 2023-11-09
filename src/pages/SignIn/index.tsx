@@ -4,8 +4,8 @@ import { ROUTER_PATHS } from 'common/constant';
 import { FormItemTypeEnum, LanguageKeyEnum, MutationKeyEnum } from 'common/enum';
 import { CustomForm } from 'components/CustomForm';
 import { CustomFormItem } from 'components/CustomFormItem';
-import { useCustomMutation } from 'hooks/useCustomMutation';
-import { useTranslation } from 'react-i18next';
+import { useCustomMutation } from 'hooks/react-query/useCustomMutation';
+import { useTrans } from 'i18n';
 import { Link } from 'react-router-dom';
 
 // INIT_VALUES
@@ -22,7 +22,7 @@ const PASSWORD_RULES: Rule[] = [
 ];
 
 export const SignIn = () => {
-  const { t } = useTranslation();
+  const { t } = useTrans();
   const signInMutation = useCustomMutation({ mutationKey: MutationKeyEnum.SIGNIN });
 
   const onFinish = (payload: ISignInPayload) => {

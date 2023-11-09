@@ -1,12 +1,12 @@
 import { ISignUpPayload } from 'api/auth';
 import { CustomFormItem } from 'components/CustomFormItem';
 import { CustomForm } from 'components/CustomForm';
-import { useCustomMutation } from 'hooks/useCustomMutation';
+import { useCustomMutation } from 'hooks/react-query/useCustomMutation';
 import { MutationKeyEnum, LanguageKeyEnum, FormItemTypeEnum } from 'common/enum';
 import { Rule } from 'antd/lib/form';
 import { ROUTER_PATHS } from 'common/constant';
 import { Link } from 'react-router-dom';
-import { useTranslation } from 'react-i18next';
+import { useTrans } from 'i18n';
 
 // INIT_VALUES
 const INIT_VALUES: ISignUpPayload = { email: '', password: '', firstName: '', lastName: '', phoneNumber: '' };
@@ -33,7 +33,7 @@ const CONFIRM_PASSWORD_RULES: Rule[] = [
 ];
 
 export const SignUp = () => {
-  const { t } = useTranslation();
+  const { t } = useTrans();
   const signUpMutation = useCustomMutation({ mutationKey: MutationKeyEnum.SIGNUP });
 
   const onFinish = (payload: ISignUpPayload) => {

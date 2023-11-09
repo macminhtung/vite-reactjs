@@ -2,7 +2,7 @@ import { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import { ROUTER_PATHS } from 'common/constant';
 import { LanguageKeyEnum } from 'common/enum';
-import { useTranslation } from 'react-i18next';
+import { useTrans } from 'i18n';
 
 const workerFactory = (workerScript: URL, workerOptions: WorkerOptions) => () =>
   new Worker(workerScript, workerOptions);
@@ -12,7 +12,7 @@ const factory = workerFactory(new URL('worker/main.worker.ts', import.meta.url),
 const worker = factory();
 
 export const WorkerPage = () => {
-  const { t } = useTranslation();
+  const { t } = useTrans();
   const [message, setMessage] = useState<string>('');
 
   useEffect(() => {

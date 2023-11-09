@@ -1,10 +1,10 @@
-import { useTranslation } from 'react-i18next';
+import { useTrans } from 'i18n';
 import { Link } from 'react-router-dom';
 import { ROUTER_PATHS } from 'common/constant';
 import { LanguageKeyEnum } from 'common/enum';
 
 export const DashBoard = () => {
-  const { t } = useTranslation();
+  const { t } = useTrans();
   return (
     <div>
       <h1>{t(LanguageKeyEnum.DASHBOARD)}</h1>
