@@ -6,17 +6,19 @@ import './styles.sass';
 
 interface ICustomForm extends FormProps {
   noSubmitButton?: boolean;
+  submitButtonContent?: string;
 }
 
 export const CustomForm = (props: ICustomForm) => {
+  const { noSubmitButton, submitButtonContent, children, ...restProps } = props;
   const { t } = useTrans();
-  const { noSubmitButton = false, children, ...restProps } = props;
+
   return (
     <Form layout='vertical' style={{ minWidth: 400 }} autoComplete='off' {...restProps}>
       {children as ReactNode}
       {!noSubmitButton && (
         <Button type='primary' htmlType='submit' className='w-full mt-4'>
-          {t(LanguageKeyEnum.Submit)}
+          {submitButtonContent ? submitButtonContent : t(LanguageKeyEnum.Submit)}
         </Button>
       )}
     </Form>

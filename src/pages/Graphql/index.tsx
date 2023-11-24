@@ -30,7 +30,7 @@ export const GraphqlPage = () => {
       {queryData && (
         <div>
           <strong>[QUERY] DATA:</strong>
-          <p>{JSON.stringify(queryData)}</p>
+          <p>{JSON.stringify(queryData.categories)}</p>
         </div>
       )}
       <br />
@@ -39,7 +39,7 @@ export const GraphqlPage = () => {
       {mutationData && (
         <div>
           <strong>[MUTATION] DATA:</strong>
-          <p>{JSON.stringify(mutationData)}</p>
+          <p>{JSON.stringify(mutationData.addCategory)}</p>
         </div>
       )}
       <div className='mt-5'>

@@ -9,7 +9,7 @@ import { useTrans } from 'i18n';
 import { Link } from 'react-router-dom';
 
 // INIT_VALUES
-const INIT_VALUES: ISignInPayload = { email: '', password: '' };
+const INIT_VALUES: ISignInPayload = { email: 'hkt@gmail.com', password: '123456xX' };
 
 // FORM ITEM RULES
 const EMAIL_RULES: Rule[] = [
