@@ -7,17 +7,6 @@ export const DashBoard = () => {
   const { t } = useTrans();
   return (
     <div>
-      <h1>{t(LanguageKeyEnum.DASHBOARD)}</h1>
-      <div className='mt-5'>
-        <Link className='text-orange' to={ROUTER_PATHS.WORKER}>
-          {t(LanguageKeyEnum.TEST_WORKER)}
-        </Link>
-      </div>
-      <div className='mt-5'>
-        <Link className='text-orange' to={ROUTER_PATHS.GRAPHQL}>
-          {t(LanguageKeyEnum.TEST_GRAPHQL)}
-        </Link>
-      </div>
       <div className='mt-5'>
         <Link className='text-orange' to={ROUTER_PATHS.SIGNIN}>
           {t(LanguageKeyEnum.SIGNIN)}
@@ -29,8 +18,18 @@ export const DashBoard = () => {
         </Link>
       </div>
       <div className='mt-5'>
+        <Link className='text-orange' to={ROUTER_PATHS.DASHBOARD.GRAPHQL}>
+          {t(LanguageKeyEnum.TEST_GRAPHQL)}
+        </Link>
+      </div>
+      <div className='mt-5'>
         <Link className='text-orange' to={ROUTER_PATHS.DASHBOARD.PROFILE}>
           {t(LanguageKeyEnum.PROFILE)}
+        </Link>
+      </div>
+      <div className='mt-5'>
+        <Link className='text-orange' to={ROUTER_PATHS.DASHBOARD.WORKER}>
+          {t(LanguageKeyEnum.TEST_WORKER)}
         </Link>
       </div>
     </div>

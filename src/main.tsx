@@ -3,7 +3,7 @@ import { ApolloClient, InMemoryCache, ApolloProvider } from '@apollo/client';
 import { QueryClient, QueryClientProvider } from 'react-query';
 import { AuthProvider } from 'contexts/auth';
 import { Router } from 'components/Router';
-import { Header } from 'components/Header';
+
 import './styles/main.sass';
 import './i18n';
 
@@ -27,7 +27,6 @@ ReactDOM.createRoot(document.getElementById('root')!).render(
     <QueryClientProvider client={queryClient}>
       <AuthProvider>
         <div className='main-container'>
-          <Header />
           <Router />
         </div>
       </AuthProvider>

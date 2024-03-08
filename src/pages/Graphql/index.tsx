@@ -1,8 +1,4 @@
 import { useState } from 'react';
-import { Link } from 'react-router-dom';
-import { ROUTER_PATHS } from 'common/constant';
-import { LanguageKeyEnum } from 'languages';
-import { useTrans } from 'i18n';
 import { QueryKeyEnum, useCustomQuery, MutationKeyEnum, useCustomMutation } from 'hooks/apollo-client';
 import { CustomTable, CustomButton } from 'components/antd';
 import { Space } from 'antd';
@@ -17,7 +13,6 @@ const initValues: ICategory = {
 };
 
 export const GraphqlPage = () => {
-  const { t } = useTrans();
   const [formValues, setFormValues] = useState<ICategory | null>(null);
   const { loading: isLoading, data: queryData, refetch } = useCustomQuery(QueryKeyEnum.GET_CATEGORIES);
 
@@ -70,18 +65,20 @@ export const GraphqlPage = () => {
 
   return (
     <div>
-      <div className='mt-5'>
-        <Link className='text-orange' to={ROUTER_PATHS.DASHBOARD.MAIN}>
-          {t(LanguageKeyEnum.DASHBOARD).toUpperCase()}
-        </Link>
-      </div>
-
       {formValues && <CategoryForm formValues={formValues} onCloseModal={onCloseModal} refetch={refetch} />}
 
       <div className='center-center'>
         <div className='flex items-center'>
           <h1 className='text-gray mr-5'>Category Management</h1>
-          <CustomButton type='primary' green icon={<PlusOutlined />} onClick={() => setFormValues(initValues)} />
+          <CustomButton
+            type='primary'
+            className='h-10'
+            green
+            icon={<PlusOutlined />}
+            onClick={() => setFormValues(initValues)}
+          >
+            Add Category
+          </CustomButton>
         </div>
 
         <CustomTable

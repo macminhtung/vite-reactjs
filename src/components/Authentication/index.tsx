@@ -12,6 +12,7 @@ export const Authentication = () => {
 
   return (
     <div className='h-[calc(100vh-4.5rem)] bg-white'>
+      <Header />
       <Outlet />
     </div>
   );

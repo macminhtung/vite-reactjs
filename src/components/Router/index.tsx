@@ -19,14 +19,6 @@ export const Router = () => {
       path: ROUTER_PATHS.SIGNUP,
       element: <SignUp />,
     },
-    {
-      path: ROUTER_PATHS.WORKER,
-      element: <WorkerPage />,
-    },
-    {
-      path: ROUTER_PATHS.GRAPHQL,
-      element: <GraphqlPage />,
-    },
 
     // AUTHENTICATION PATHS
     {
@@ -40,6 +32,14 @@ export const Router = () => {
         {
           path: ROUTER_PATHS.DASHBOARD.PROFILE,
           element: <Profile />,
+        },
+        {
+          path: ROUTER_PATHS.DASHBOARD.GRAPHQL,
+          element: <GraphqlPage />,
+        },
+        {
+          path: ROUTER_PATHS.DASHBOARD.WORKER,
+          element: <WorkerPage />,
         },
       ],
     },

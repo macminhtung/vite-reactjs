@@ -7,6 +7,7 @@ import { CustomFormItem, CustomForm } from 'components/antd';
 import { useCustomMutation } from 'hooks/react-query/useCustomMutation';
 import { useTrans } from 'i18n';
 import { Link } from 'react-router-dom';
+import { Header } from 'components/Header';
 
 // INIT_VALUES
 const INIT_VALUES: ISignInPayload = { email: 'hkt@gmail.com', password: '123456xX' };
@@ -31,32 +32,30 @@ export const SignIn = () => {
   };
 
   return (
-    <div className='center-center'>
-      <h2 className='text-orange'>{t(LanguageKeyEnum.SIGNIN)}</h2>
-      <CustomForm initialValues={INIT_VALUES} onFinish={onFinish}>
-        <CustomFormItem
-          itemType={FormItemTypeEnum.INPUT}
-          name='email'
-          label={t(LanguageKeyEnum.Email)}
-          rules={EMAIL_RULES}
-        />
-        <CustomFormItem
-          itemType={FormItemTypeEnum.PASSWORD}
-          name='password'
-          label={t(LanguageKeyEnum.Password)}
-          rules={PASSWORD_RULES}
-        />
-      </CustomForm>
-      <div className='mt-5'>
-        <Link className='text-orange' to={ROUTER_PATHS.SIGNUP}>
-          {t(LanguageKeyEnum.SIGNUP)}
-        </Link>
+    <>
+      <Header />
+      <div className='center-center'>
+        <h2 className='text-orange'>{t(LanguageKeyEnum.SIGNIN)}</h2>
+        <CustomForm initialValues={INIT_VALUES} onFinish={onFinish}>
+          <CustomFormItem
+            itemType={FormItemTypeEnum.INPUT}
+            name='email'
+            label={t(LanguageKeyEnum.Email)}
+            rules={EMAIL_RULES}
+          />
+          <CustomFormItem
+            itemType={FormItemTypeEnum.PASSWORD}
+            name='password'
+            label={t(LanguageKeyEnum.Password)}
+            rules={PASSWORD_RULES}
+          />
+        </CustomForm>
+        <div className='mt-5'>
+          <Link className='text-orange' to={ROUTER_PATHS.SIGNUP}>
+            {t(LanguageKeyEnum.SIGNUP)}
+          </Link>
+        </div>
       </div>
-      <div className='mt-5'>
-        <Link className='text-orange' to={ROUTER_PATHS.DASHBOARD.MAIN}>
-          {t(LanguageKeyEnum.DASHBOARD).toUpperCase()}
-        </Link>
-      </div>
-    </div>
+    </>
   );
 };
