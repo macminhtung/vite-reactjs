@@ -1,0 +1,22 @@
+button.custom-button
+  @apply shadow-none
+
+  &.green
+    @apply text-green bg-white border-green
+    &:hover:not(:disabled):not(.ant-btn-disabled)
+      @apply text-white bg-green border-green
+
+    &.ant-btn-primary:not(:disabled)
+      @apply bg-green text-white
+      &:hover:not(:disabled):not(.ant-btn-disabled)
+        @apply bg-lightGreen font-medium text-green
+
+  &.orange
+    @apply text-orange bg-white border-orange
+    &:hover:not(:disabled):not(.ant-btn-disabled)
+      @apply text-white bg-orange border-orange
+
+    &.ant-btn-primary:not(:disabled)
+      @apply bg-orange text-white
+      &:hover:not(:disabled):not(.ant-btn-disabled)
+        @apply bg-lightOrange font-medium text-orange

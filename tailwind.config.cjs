@@ -17,7 +17,11 @@ module.exports = {
       white: 'white',
       black: 'black',
       orange: '#F99444',
-      lightGrey: '#29292933',
+      lightOrange: '#f9944438',
+      gray: '#585656',
+      lightGray: '#29292929',
+      green: '#59ca45',
+      lightGreen: '#59ca4529',
     },
     borderWidth: {
       DEFAULT: '1px',

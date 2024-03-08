@@ -1,8 +1,8 @@
 import { ISignUpPayload } from 'api/auth';
-import { CustomFormItem } from 'components/CustomFormItem';
-import { CustomForm } from 'components/CustomForm';
+import { CustomForm, CustomFormItem } from 'components/antd';
 import { useCustomMutation } from 'hooks/react-query/useCustomMutation';
-import { MutationKeyEnum, LanguageKeyEnum, FormItemTypeEnum } from 'common/enum';
+import { MutationKeyEnum, FormItemTypeEnum } from 'common/enum';
+import { LanguageKeyEnum } from 'languages';
 import { Rule } from 'antd/lib/form';
 import { ROUTER_PATHS } from 'common/constant';
 import { Link } from 'react-router-dom';

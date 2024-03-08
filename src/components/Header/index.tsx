@@ -1,5 +1,5 @@
 import { Select } from 'antd';
-import { LanguageEnum } from 'common/enum';
+import { LanguageEnum } from 'languages';
 import { useTrans } from 'i18n';
 import { LANGUAGE_KEY, DEFAULT_LANGUAGE, LANGUAGE_VALUES } from 'i18n';
 import './styles.sass';

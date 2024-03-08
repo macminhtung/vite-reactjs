@@ -1,4 +1,4 @@
-import { LanguageKeyEnum } from 'common/enum';
+import { LanguageKeyEnum } from 'languages/enum';
 
 export const EN: { [key in LanguageKeyEnum]: string } = {
   [LanguageKeyEnum.DASHBOARD]: 'DashBoard',

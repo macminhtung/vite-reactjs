@@ -1,6 +1,6 @@
 import i18n from 'i18next';
 import { initReactI18next, useTranslation } from 'react-i18next';
-import { LanguageEnum, LanguageKeyEnum } from 'common/enum';
+import { LanguageEnum, LanguageKeyEnum } from 'languages';
 import { EN, VI } from 'languages';
 import type { i18n as i18nType } from 'i18next';
 

@@ -1,4 +1,4 @@
-import { LanguageKeyEnum } from 'common/enum';
+import { LanguageKeyEnum } from 'languages/enum';
 
 export const VI: { [key in LanguageKeyEnum]: string } = {
   [LanguageKeyEnum.DASHBOARD]: 'Bảng Điều Khiển',

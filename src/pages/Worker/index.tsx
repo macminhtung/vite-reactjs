@@ -1,7 +1,7 @@
 import { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import { ROUTER_PATHS } from 'common/constant';
-import { LanguageKeyEnum } from 'common/enum';
+import { LanguageKeyEnum } from 'languages';
 import { useTrans } from 'i18n';
 
 const workerFactory = (workerScript: URL, workerOptions: WorkerOptions) => () =>

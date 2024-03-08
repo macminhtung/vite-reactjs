@@ -2,7 +2,7 @@ import { QueryKeyEnum } from 'common/enum';
 import { useCustomQuery } from 'hooks/react-query/useCustomQuery';
 import { Link } from 'react-router-dom';
 import { ROUTER_PATHS } from 'common/constant';
-import { LanguageKeyEnum } from 'common/enum';
+import { LanguageKeyEnum } from 'languages';
 import { useTrans } from 'i18n';
 
 export const Profile = () => {

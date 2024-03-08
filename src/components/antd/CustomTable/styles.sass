@@ -1,0 +1,22 @@
+div.custom-table
+  @apply text-gray w-fit
+
+  th.ant-table-cell
+    @apply bg-gray text-white
+
+  tr.ant-table-row
+    td.ant-table-cell
+      @apply text-gray border-lightGray border-b-[1px]
+
+    &.even
+      @apply bg-[#eeeeee]
+    &.odd
+      @apply bg-[#cacaca]
+
+    &:last-child
+      @apply rounded-b-lg
+      td.ant-table-cell
+        &:first-child
+          @apply rounded-bl-lg
+        &:last-child
+          @apply rounded-br-lg

@@ -62,7 +62,7 @@ export const CustomFormItem = <T extends FormItemTypeEnum>(props: ConditionalPro
         return <Input {...childProps} />;
       }
       case FormItemTypeEnum.INPUT_NUMBER: {
-        return <InputNumber {...childProps} />;
+        return <InputNumber className='w-full' {...childProps} />;
       }
       case FormItemTypeEnum.TEXTAREA: {
         return <TextArea {...childProps} />;
