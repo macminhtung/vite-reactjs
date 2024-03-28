@@ -1,28 +1,29 @@
 import { memo, useMemo, useState } from 'react';
-import { useTrans } from 'i18n';
-import { Link } from 'react-router-dom';
-import { ROUTER_PATHS } from 'common/constant';
-import { LanguageKeyEnum } from 'languages';
 import { CustomButton } from 'components/antd';
+// import { useTrans } from 'i18n';
+// import { Link } from 'react-router-dom';
+// import { ROUTER_PATHS } from 'common/constant';
+// import { LanguageKeyEnum } from 'languages';
 
 const TestReactMemo = memo((props: { count: number }) => {
   return (
     <div>
       <p>{new Date().getTime()}</p>
-      <p>{props.count}</p>
+      <p>Count: {props.count}</p>
     </div>
   );
 });
 
 export const DashBoard = () => {
-  const { t } = useTrans();
+  // const { t } = useTrans();
   const [count, setCount] = useState(0);
+  const [flag, setFlag] = useState(false);
 
   const testUseMemo = useMemo(() => {
     return (
       <div>
         <p>{new Date().getTime()}</p>
-        <p>{count}</p>
+        <p>Count: {count}</p>
       </div>
     );
   }, [count]);
@@ -36,7 +37,9 @@ export const DashBoard = () => {
       <h1>useMemo</h1>
       {testUseMemo}
       <br />
-      <div className='mt-5'>
+      <CustomButton onClick={() => setFlag(!flag)}>FLAG</CustomButton>
+      <p>Flag: {`${flag}`}</p>
+      {/* <div className='mt-5'>
         <Link className='text-orange' to={ROUTER_PATHS.SIGNIN}>
           {t(LanguageKeyEnum.SIGNIN)}
         </Link>
@@ -60,7 +63,7 @@ export const DashBoard = () => {
         <Link className='text-orange' to={ROUTER_PATHS.DASHBOARD.WORKER}>
           {t(LanguageKeyEnum.TEST_WORKER)}
         </Link>
-      </div>
+      </div> */}
     </div>
   );
 };
