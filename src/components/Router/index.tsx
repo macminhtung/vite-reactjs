@@ -7,6 +7,7 @@ import { WorkerPage } from 'pages/Worker';
 import { GraphqlPage } from 'pages/Graphql';
 import { DashBoard } from 'pages/DashBoard';
 import { Profile } from 'pages/Profile';
+import { useEffect } from 'react';
 
 export const Router = () => {
   const router = createBrowserRouter([
@@ -49,6 +50,21 @@ export const Router = () => {
       element: <Navigate to={ROUTER_PATHS.DASHBOARD.MAIN} />,
     },
   ]);
+
+  useEffect(() => {
+    const requestNotificationPermission = async () => await Notification.requestPermission();
+    const registerServiceWorker = async () => await navigator.serviceWorker.register('/firebase-messaging-sw.js');
+    const initializeFlow = async () => {
+      const permission = await requestNotificationPermission();
+      if (permission === 'granted') await registerServiceWorker();
+    };
+
+    if ('serviceWorker' in navigator) {
+      initializeFlow();
+    } else {
+      console.error('Service Worker is not supported in this browser.');
+    }
+  }, []);
 
   return <RouterProvider router={router} />;
 };
